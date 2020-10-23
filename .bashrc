@@ -127,15 +127,23 @@ function rm-path {
 }
 
 
-# enables tab titling
-#function title() {
-#  if [[ -z "$ORIG" ]]; then
-#    ORIG=$PS1
-#  fi
-#  TITLE="\[\e]2;$*\a\]"
-#  PS1=${ORIG}${TITLE}
-#}
+#func multiple file type opening
+#usage fopen
+function opens() { 
+	for f in $@;
+	do
+		xdg-open $f
+	done
 
+}
+
+function l() { 
+	for N in {1..10}; do \
+	   echo ${N}; \
+	done
+}
+
+# func tab titling
 function title() {
   if [[ -z "$ORIG" ]]; then
     ORIG=$PS1

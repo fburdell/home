@@ -1,3 +1,113 @@
+#enables path removal
+function rm-path {
+  # Delete path by parts so we can never accidentally remove sub paths
+  PATH=${PATH//":$1:"/":"} # delete any instances in the middle
+  PATH=${PATH/#"$1:"/} # delete any instance at the beginning
+  PATH=${PATH/%":$1"/} # delete any instance in the at the end
+}
+
+#assumes file with URL as text only
+#opens those URLs in google chrome
+function gopen() { 
+	for f in $@; 
+	do 
+		cat $f | xargs google-chrome $2;
+	done
+}
+
+
+#func multiple file type opening
+#usage fopen
+function opens() { 
+	for f in $@;
+	do
+		xdg-open $f
+	done
+
+}
+
+function lx() { 
+	for f in $@; 
+	do 
+		pdflatex $f
+	done
+}
+
+# func tab titling
+function title() {
+  if [[ -z "$ORIG" ]]; then
+    ORIG=$PS1
+  fi
+  TITLE="\[\e]2;$*\a\]"
+  PS1=${ORIG}${TITLE}
+}
+
+#PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+
+# temp envs
+export PATH=/home/frank/go/bin/:/usr/bin/texlive/2020/bin/x86_64-linux:$PATH
+export GOPATH="$GOPATH:/home/frank/go/bin/"
+export PYTHONPATH="$PYTHONPATH:/home/frank/python/" 
+export PIPENV_PYUP_API_KEY="" #removes warning for local pkg imorts
+export PROMPT_DIRTRIM=1 # trim terminal prompt
+
+# app commands
+alias pip='pip3'
+alias py='python3'
+alias vi='vim'
+alias vibashrc='vim ~/.bashrc'
+alias sourcebashrc='source ~/.bashrc'
+alias vivi='vim ~/.vimrc'
+alias open='xdg-open'
+alias apt='apt-get'
+alias vicron='sudo crontab -e'
+alias cronlog='grep CRON /var/log/syslog'
+alias pathsty='sudo cp *.sty /usr/share/texmf/tex/latex/'
+alias pg_main='psql -U frank main'
+alias goog='google-chrome'
+
+# movement commands
+alias '..'="open ."
+alias 'kl'='exit'
+alias 'lk'='fc -s'
+
+
+# main paths
+alias home='cd ~'
+#alias gome="cd '/home/frank/Insync/fburdell@gmail.com/Google Drive/'"
+#alias proj="cd '/home/frank/Insync/fburdell@gmail.com/Google Drive/projects'"
+alias down='cd ~/Downloads'
+
+# file commands
+alias findd='find . -type d -name'
+alias findf='find . -name'
+alias mdc_memo='cp -r ~/mdc/templates/memo/'
+
+alias rmd='rm -rvf'
+alias rma='rm *'
+alias ld='ls -d -- */'
+alias lf="ls | grep -v '^d'"
+
+alias la='ls -a'
+
+alias cl='clear'
+alias cls='clear && ls'
+alias cla='clear && la'
+
+alias cda='cd ..'
+alias cdb='cd ../..'
+alias cdc='cd ../../..'
+alias cdd='cd ../../../..'
+
+# folders
+alias gopix='open ~/Pictures'
+
+
+
+
+#####################################################
+#####################################################
+#####################################################
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -59,7 +169,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;30m\]/\h/\u/ \[\033[01;34m\]\w \[\033[00m\]\$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -117,117 +227,5 @@ fi
 if [ -f /etc/bash_completion ]; then
  . /etc/bash_completion
 fi
-
-#enables path removal
-function rm-path {
-  # Delete path by parts so we can never accidentally remove sub paths
-  PATH=${PATH//":$1:"/":"} # delete any instances in the middle
-  PATH=${PATH/#"$1:"/} # delete any instance at the beginning
-  PATH=${PATH/%":$1"/} # delete any instance in the at the end
-}
-
-
-#func multiple file type opening
-#usage fopen
-function opens() { 
-	for f in $@;
-	do
-		xdg-open $f
-	done
-
-}
-
-function l() { 
-	for N in {1..10}; do \
-	   echo ${N}; \
-	done
-}
-
-# func tab titling
-function title() {
-  if [[ -z "$ORIG" ]]; then
-    ORIG=$PS1
-  fi
-  TITLE="\[\e]2;$*\a\]"
-  PS1=${ORIG}${TITLE}
-}
-
-#PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-
-# temp envs
-export PATH=/usr/bin/texlive/2020/bin/x86_64-linux:$PATH
-export PYTHONPATH="$PYTHONPATH:/home/frank/python/" 
-export PIPENV_PYUP_API_KEY="" #removes warning for local pkg imorts
-export PROMPT_DIRTRIM=1 # trim terminal prompt
-export CENSUS_API_KEY='01a8aa5feced9c8f39911996b95ac6ddfb776f4c'
-
-# other users
-alias llcyrus='ssh frank@10.0.0.66'
-
-# app commands
-alias pip='pip3'
-alias py='python3'
-alias vi='vim'
-alias vibashrc='vim ~/.bashrc'
-alias sourcebashrc='source ~/.bashrc'
-alias vivi='vim ~/.vimrc'
-alias open='xdg-open'
-alias apt='apt-get'
-alias vicron='sudo crontab -e'
-alias cronlog='grep CRON /var/log/syslog'
-alias pathsty='sudo cp *.sty /usr/share/texmf/tex/latex/'
-alias ltk="pdflatex *.tex && exit" #usage, in vim, :term && ltk
-alias chrome="open 'Google Chrome'"
-
-# movement commands
-alias '..'="open ."
-alias 'kl'='exit'
-
-# file commands
-alias findd='find . -type d -name'
-alias findf='find . -name'
-
-alias rmd='rm -rvf'
-
-alias ld="ls | grep '^d'"
-alias lf="ls | grep -v '^d'"
-
-alias la='ls -a'
-
-alias cl='clear'
-alias cls='clear && ls'
-alias cla='clear && la'
-
-alias home='cd ~'
-alias cda='cd ..'
-alias cdb='cd ../..'
-alias cdc='cd ../../..'
-alias cdd='cd ../../../..'
-
-alias god='cd ~/Downloads'
-alias gof='cd ~/Insync/fburdell@gmail.com/Google\ Drive'
-alias gofn='cd ~/Insync/fburdell@gmail.com/Google\ Drive/notes'
-alias gofp='cd ~/Insync/fburdell@gmail.com/Google\ Drive/projects'
-
-alias gohs='cd ~/Insync/frank@pahdcc.com/Google\ Drive/2020\ Cycle'
-alias gohm='cd ~/Insync/frank@pahdcc.com/Google\ Drive/2020\ Cycle/HDCC\ Campaign\ Materials'
-
-alias goh='cd ~/Insync/frank@pahdcc.com/Google\ Drive/cycle_20'
-alias gohp='cd ~/Insync/frank@pahdcc.com/Google\ Drive/cycle_20/program'
-alias gohn='cd ~/Insync/frank@pahdcc.com/Google\ Drive/cycle_20/notes'
-alias gohm='cd ~/Insync/frank@pahdcc.com/Google\ Drive/cycle_20/memos'
-alias gohsp='cd ~/Insync/frank@pahdcc.com/Google\ Drive/cycle_20/specialProjects'
-
-alias gohd='cd ~/Insync/frank@pahdcc.com/Google\ Drive/cycle_20/program/data'
-alias goht='cd ~/Insync/frank@pahdcc.com/Google\ Drive/cycle_20/program/targeting'
-alias gohf='cd ~/Insync/frank@pahdcc.com/Google\ Drive/cycle_20/program/data/projects/fenv'
-
-alias gopix='open ~/Pictures'
-
-alias todo="vim '/home/frank/Insync/frank@pahdcc.com/Google Drive/cycle_20/notes/todo.txt'"
-
-alias getletter="cp -r '/home/frank/Insync/frank@pahdcc.com/Google Drive/cycle_20/templates/letter/'"
-alias getmemo="cp -r '/home/frank/Insync/frank@pahdcc.com/Google Drive/cycle_20/templates/memo/'"
-alias getslides="cp '/home/frank/Insync/frank@pahdcc.com/Google Drive/2020 Cycle/Templates/slides.pptx'"
 
 

@@ -1,3 +1,19 @@
+function alg() { 
+	for run in 1 2 
+	do 
+		xdg-open "/home/frank/info/_plan/algebra_beginandinterm.pdf"
+	done
+}
+
+function findf() { 
+	find $1 -wholename -name  $2
+}
+
+function findd() { 
+	find $1 -type d -name $2	
+}
+
+
 #enables path removal
 function rm-path {
   # Delete path by parts so we can never accidentally remove sub paths
@@ -9,7 +25,7 @@ function rm-path {
 #assumes file with URL as text only
 #opens those URLs in google chrome
 function gopen() { 
-	for f in $@; 
+	for f in $1; 
 	do 
 		cat $f | xargs google-chrome $2;
 	done
@@ -19,7 +35,7 @@ function gopen() {
 #func multiple file type opening
 #usage fopen
 function opens() { 
-	for f in $@;
+	for f in $1;
 	do
 		xdg-open $f
 	done
@@ -27,10 +43,12 @@ function opens() {
 }
 
 function lx() { 
-	for f in $@; 
+	for f in *.tex; 
 	do 
 		pdflatex $f
 	done
+
+	exit
 }
 
 # func tab titling
@@ -46,7 +64,6 @@ function title() {
 
 # temp envs
 export PATH=/home/frank/go/bin/:/usr/bin/texlive/2020/bin/x86_64-linux:$PATH
-export GOPATH="$GOPATH:/home/frank/go/bin/"
 export PYTHONPATH="$PYTHONPATH:/home/frank/python/" 
 export PIPENV_PYUP_API_KEY="" #removes warning for local pkg imorts
 export PROMPT_DIRTRIM=1 # trim terminal prompt
@@ -56,7 +73,7 @@ alias pip='pip3'
 alias py='python3'
 alias vi='vim'
 alias vibashrc='vim ~/.bashrc'
-alias sourcebashrc='source ~/.bashrc'
+alias sbc='source ~/.bashrc'
 alias vivi='vim ~/.vimrc'
 alias open='xdg-open'
 alias apt='apt-get'
@@ -79,9 +96,10 @@ alias home='cd ~'
 alias down='cd ~/Downloads'
 
 # file commands
-alias findd='find . -type d -name'
-alias findf='find . -name'
+alias findd='find -type d -name'
+alias findf='find -name'
 alias mdc_memo='cp -r ~/mdc/templates/memo/'
+alias mdc_letter='cp -r ~/mdc/templates/letter/'
 
 alias rmd='rm -rvf'
 alias rma='rm *'
@@ -169,7 +187,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;30m\]/\h/\u/ \[\033[01;34m\]\w \[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[090m\]/\h/\u/\[\033[094m\]\w/\[\033[00m\]\$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi

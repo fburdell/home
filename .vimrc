@@ -24,15 +24,13 @@ nnoremap <C-H> <C-W>h
 
 nnoremap <C->> <C-W>>
 
+"autocompletes parens and bracks with tab inbetween
 inoremap ( ()<Esc>i
 inoremap { {}<Esc>i
 inoremap [ []<Esc>i
 inoremap < <><Esc>i
 inoremap ' ''<Esc>i
 inoremap " ""<Esc>i
-
-"autocompletes parens and bracks with tab inbetween
-
 
 "switch line start and end
 nnoremap B ^
@@ -56,21 +54,20 @@ syntax on
 set showmatch "matches parens etc
 set encoding=utf-8
 
-
+set spell
+set spelllang=en_us
 set splitbelow
 set splitright
-set nu
-"set nonu
+set nu rnu
 
 set clipboard=unnamedplus
 
 autocmd BufWinLeave *.* mkview "auto saves views for folds
 autocmd BufWinEnter *.* silent loadview  "auto loads views for folds
 
-
-color desert
 set cursorline
 hi CursorLine term=bold cterm=bold guibg=Grey40
+
 
 
 

@@ -18,8 +18,8 @@ filetype plugin indent on    " required
 
 
 "escape and save remap
-imap jj <Esc>
-nnoremap zz :update<cr>
+imap jl <Esc>
+nnoremap fs :update<cr>
 
 "maps split switching
 nnoremap <C->> <C-W>>
@@ -40,13 +40,11 @@ inoremap < <><Esc>i
 inoremap ' ''<Esc>i
 inoremap " ""<Esc>i
 
-
-
 autocmd FileType tex set shiftwidth=4 tabstop=4
 autocmd FileType tex set autoindent
 autocmd FileType tex set smartindent
 
-autocmd FileType py set shiftwidth=4 tabstop=4
+autocmd FileType py || go set shiftwidth=4 tabstop=4
 autocmd FileType py set autoindent
 autocmd FileType py set smartindent
 autocmd FileType py set textwidth=79 " PEP-8 Friendly
@@ -70,7 +68,5 @@ autocmd BufWinEnter *.* silent loadview  "auto loads views for folds
 
 set cursorline
 hi CursorLine term=bold cterm=bold guibg=Grey40
-
-
 
 

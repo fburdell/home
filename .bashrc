@@ -88,37 +88,41 @@ alias '..'="open ."
 alias 'kl'='exit'
 alias 'lk'='fc -s'
 
-
-# main paths
+# dir mgmt
 alias home='cd ~'
-#alias gome="cd '/home/frank/Insync/fburdell@gmail.com/Google Drive/'"
-#alias proj="cd '/home/frank/Insync/fburdell@gmail.com/Google Drive/projects'"
 alias down='cd ~/Downloads'
+alias checkdown='ls ~/Downloads'
+alias cleardown='rm -rvf ~/Downloads/*'
+alias gopix='open ~/Pictures'
 
-# file commands
-alias findd='find -type d -name'
-alias findf='find -name'
-alias mdc_memo='cp -r ~/mdc/templates/memo/'
-alias mdc_letter='cp -r ~/mdc/templates/letter/'
-
-alias rmd='rm -rvf'
-alias rma='rm *'
-alias ld='ls -d -- */'
-alias lf="ls | grep -v '^d'"
-
-alias la='ls -a'
-
-alias cl='clear'
-alias cls='clear && ls'
-alias cla='clear && la'
-
+# navigation
 alias cda='cd ..'
 alias cdb='cd ../..'
 alias cdc='cd ../../..'
 alias cdd='cd ../../../..'
 
-# folders
-alias gopix='open ~/Pictures'
+# file commands
+alias findd='find -type d -name'
+alias findf='find -name'
+
+# removeals
+alias rmd='rm -rvf'
+alias rma='rm *'
+
+# listing
+alias ld='ls -d -- */'
+alias lf="ls | grep -v '^d'"
+alias la='ls -a'
+
+# clearing
+alias cl='clear'
+alias cls='clear && ls'
+alias cla='clear && la'
+
+# get documents
+alias mdc_memo='cp -r ~/mdc/templates/memo/'
+alias mdc_letter='cp -r ~/mdc/templates/letter/'
+
 
 
 
@@ -187,7 +191,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[090m\]/\h/\u/\[\033[094m\]\w/\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[090m\]/\h/\u/\[\033[094m\]\w\[\033[00m\]\$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi

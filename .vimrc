@@ -18,8 +18,11 @@ filetype plugin indent on    " required
 
 
 "escape and save remap
-imap jl <Esc>
-nnoremap fs :update<cr>
+imap lj <Esc>
+nnoremap sf :update<cr>
+nnoremap ou :q<cr>
+nnoremap :T :ter<cr>
+nnoremap :E :edit!<cr>
 
 "maps split switching
 nnoremap <C->> <C-W>>
@@ -33,16 +36,14 @@ nnoremap B ^
 nnoremap E $
 
 "autocompletes parens and bracks with tab inbetween
-inoremap ( ()<Esc>i
-inoremap { {}<Esc>i
-inoremap [ []<Esc>i
-inoremap < <><Esc>i
-inoremap ' ''<Esc>i
-inoremap " ""<Esc>i
 
 autocmd FileType tex set shiftwidth=4 tabstop=4
 autocmd FileType tex set autoindent
 autocmd FileType tex set smartindent
+"autocmd FileType tex set inoremap ( ()<Esc>i
+"autocmd FileType tex set inoremap { {}<Esc>i
+"autocmd FileType tex set inoremap [ []<Esc>i
+"autocmd FileType tex set inoremap < <><Esc>i
 
 autocmd FileType py || go set shiftwidth=4 tabstop=4
 autocmd FileType py set autoindent
@@ -51,12 +52,13 @@ autocmd FileType py set textwidth=79 " PEP-8 Friendly
 
 autocmd FileType sql set shiftwidth=2 tabstop=2
 
+
 syntax on 
 set showmatch "matches parens etc
 set encoding=utf-8
 
-set spell
-set spelllang=en_us
+autocmd FileType txt set spell
+autocmd FileType txt set spelllang=en_us
 set splitbelow
 set splitright
 set nu rnu

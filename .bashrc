@@ -1,3 +1,8 @@
+function mgdir() { 
+	mkdir $1 && cd $1
+}
+
+
 function alg() { 
 	for run in 1 2 
 	do 
@@ -81,7 +86,6 @@ alias vicron='sudo crontab -e'
 alias cronlog='grep CRON /var/log/syslog'
 alias pathsty='sudo cp *.sty /usr/share/texmf/tex/latex/'
 alias pg_main='psql -U frank main'
-alias goog='google-chrome'
 
 # movement commands
 alias '..'="open ."
@@ -90,10 +94,12 @@ alias 'lk'='fc -s'
 
 # dir mgmt
 alias home='cd ~'
-alias down='cd ~/Downloads'
-alias checkdown='ls ~/Downloads'
-alias cleardown='rm -rvf ~/Downloads/*'
 alias gopix='open ~/Pictures'
+alias down='cd ~/Downloads'
+alias godown='cd ~/Downloads'
+alias chkdown='ls ~/Downloads'
+alias clrdown='rm -rvf ~/Downloads/*'
+alias brdown='cp -r ~/Downloads/* .'
 
 # navigation
 alias cda='cd ..'
@@ -101,13 +107,13 @@ alias cdb='cd ../..'
 alias cdc='cd ../../..'
 alias cdd='cd ../../../..'
 
+
 # file commands
 alias findd='find -type d -name'
 alias findf='find -name'
 
 # removeals
 alias rmd='rm -rvf'
-alias rma='rm *'
 
 # listing
 alias ld='ls -d -- */'
@@ -123,7 +129,7 @@ alias cla='clear && la'
 alias mdc_memo='cp -r ~/mdc/templates/memo/'
 alias mdc_letter='cp -r ~/mdc/templates/letter/'
 
-
+alias cs_letter='cp -r ~/templates/cs/letter/'
 
 
 
@@ -191,7 +197,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[090m\]/\h/\u/\[\033[094m\]\w\[\033[00m\]\$ '
+    PS1='\n${debian_chroot:+($debian_chroot)}\[\033[090m\]/\h/\u/\[\033[094m\]\n\w\[\033[00m\] $ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi

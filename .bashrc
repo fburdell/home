@@ -65,6 +65,10 @@ function title() {
   PS1=${ORIG}${TITLE}
 }
 
+function pyo() { 
+	py $1 > stdout
+}
+
 #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 
 # temp envs
@@ -112,7 +116,7 @@ alias cdd='cd ../../../..'
 alias findd='find -type d -name'
 alias findf='find -name'
 
-# removeals
+# removals 
 alias rmd='rm -rvf'
 
 # listing

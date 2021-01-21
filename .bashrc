@@ -65,9 +65,19 @@ function title() {
   PS1=${ORIG}${TITLE}
 }
 
-function pyo() { 
-	py $1 > stdout
+function pys() { 
+	python3 $1 > stdout
 }
+
+function bright() { 
+	xrandr --output $1 --brightness $2
+	#DP-2-1
+		}
+
+function open() {
+	xdg-open $1 &
+}
+
 
 #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 
@@ -84,7 +94,6 @@ alias vi='vim'
 alias vibashrc='vim ~/.bashrc'
 alias sbc='source ~/.bashrc'
 alias vivi='vim ~/.vimrc'
-alias open='xdg-open'
 alias apt='apt-get'
 alias vicron='sudo crontab -e'
 alias cronlog='grep CRON /var/log/syslog'

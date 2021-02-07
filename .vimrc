@@ -3,18 +3,22 @@ filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
-" call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+call vundle#begin()
 
-" let Vundle manage Vundle, required
-" Plugin 'VundleVim/Vundle.vim'
-" Plugin 'valloric/youcompleteme'
-" Plugin 'dense-analysis/ale'
+" plugins
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 
-" All of your Plugins must be added before the following line
-" call vundle#end()            " required
-filetype plugin indent on    " required
+" Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
+" - https://github.com/Valloric/YouCompleteMe
+" - https://github.com/nvim-lua/completion-nvim
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+call vundle#end()
+filetype plugin indent on
 
 
 "escape and save remap
@@ -39,6 +43,7 @@ nnoremap E $
 inoremap ( ()<Esc>i
 inoremap { {}<Esc>i
 inoremap [ []<Esc>i
+
 
 autocmd FileType tex set shiftwidth=4 tabstop=4
 autocmd FileType tex set autoindent

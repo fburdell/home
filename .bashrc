@@ -6,7 +6,7 @@ function mgdir() {
 function alg() { 
 	for run in 1 2 
 	do 
-		xdg-open "/home/frank/info/_plan/algebra_beginandinterm.pdf"
+		xdg-open "/home/frank/info/_plan/algebra_beginandinterm.pdf" 
 	done
 }
 
@@ -75,7 +75,7 @@ function bright() {
 		}
 
 function open() {
-	xdg-open $1 &
+	xdg-open $1
 }
 
 

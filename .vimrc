@@ -50,19 +50,22 @@ autocmd FileType tex set autoindent
 autocmd FileType tex set smartindent
 
 autocmd FileType py || go set shiftwidth=4 tabstop=4
-autocmd FileType py set autoindent
-autocmd FileType py set smartindent
-autocmd FileType py set textwidth=79 " PEP-8 Friendly
+autocmd FileType py || go set autoindent
+autocmd FileType py || go set smartindent
+autocmd FileType py || go set textwidth=79 " PEP-8 Friendly
 
 autocmd FileType sql set shiftwidth=2 tabstop=2
 
+autocmd FileType txt set spell
+autocmd FileType txt set spelllang=en_us
+autocmd FileType txt set shiftwidth=4 tabstop=4
+autocmd FileType txt set autoindent
+autocmd FileType txt set smartindent
 
 syntax on 
 set showmatch "matches parens etc
 set encoding=utf-8
 
-autocmd FileType txt set spell
-autocmd FileType txt set spelllang=en_us
 set splitbelow
 set splitright
 set nu rnu

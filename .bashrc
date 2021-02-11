@@ -81,6 +81,10 @@ function open() {
 
 #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 
+if [ -f ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh ]; then
+    source ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
+fi
+
 # temp envs
 export PATH=/home/frank/go/bin/:/usr/bin/texlive/2020/bin/x86_64-linux:$PATH
 export PYTHONPATH="$PYTHONPATH:/home/frank/python/" 

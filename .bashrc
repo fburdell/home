@@ -1,3 +1,14 @@
+# Install Ruby Gems to ~/gems
+export GEM_HOME="$HOME/gems"
+export PATH="$HOME/gems/bin:$PATH"
+
+
+function qgit() {
+	git add $1 && git commit -m '-' && git push
+}
+
+
+
 function mgdir() { 
 	mkdir $1 && cd $1
 }
@@ -74,9 +85,35 @@ function bright() {
 	#DP-2-1
 		}
 
-function open() {
-	xdg-open $1
+function brihaf() { 
+
+	xrandr --output DP-2-1 --brightness .5 ||
+		xrandr --output DP-2-2 --brightness .5 ||
+			xrandr --output DP-2-3 --brightness .5 
+
+	xrandr --output DP-2-2 --brightness .5 ||
+		xrandr --output DP-2-3 --brightness .5 
+
+	xrandr --output DP-2-3 --brightness .5 ||
+		xrandr --output DP-2-2 --brightness .5
 }
+
+
+
+function briful() { 
+
+
+	xrandr --output DP-2-1 --brightness 1 ||
+		xrandr --output DP-2-2 --brightness 1 ||
+			xrandr --output DP-2-3 --brightness 1 
+
+	xrandr --output DP-2-2 --brightness 1 ||
+		xrandr --output DP-2-3 --brightness 1 
+
+	xrandr --output DP-2-3 --brightness 1 ||
+		xrandr --output DP-2-2 --brightness 1
+}
+
 
 
 #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
@@ -97,6 +134,7 @@ alias py='python3'
 alias vi='vim'
 alias vibashrc='vim ~/.bashrc'
 alias sbc='source ~/.bashrc'
+alias sba='source bin/activate'
 alias vivi='vim ~/.vimrc'
 alias apt='apt-get'
 alias vicron='sudo crontab -e'
@@ -108,9 +146,11 @@ alias pg_main='psql -U frank main'
 alias '..'="open ."
 alias 'kl'='exit'
 alias 'lk'='fc -s'
+alias 'open'='xdg-open'
 
 # dir mgmt
 alias home='cd ~'
+alias exhome='cd /media/frank/Seagate\ Portable\ Drive'
 alias gopix='open ~/Pictures'
 alias down='cd ~/Downloads'
 alias godown='cd ~/Downloads'
@@ -214,7 +254,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='\n${debian_chroot:+($debian_chroot)}\[\033[090m\]/\h/\u/\[\033[094m\]\n\w\[\033[00m\] $ '
+    PS1='\n${debian_chroot:+($debian_chroot)}\[\033[090m\]\u@\h\[\033[094m\] \w\[\033[00m\] $ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
